@@ -1,25 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+/*
+    adapted from tutorials by Patrick Johannessen 
+        https://www.lonesomecrowdedweb.com/blog/four-in-a-row-boardgameio/
+    and boardgame.io
+        https://boardgame.io/documentation/#/tutorial
+*/
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import { Client } from 'boardgame.io/react';
+import { ConnectFour } from './Game';
+import { ConnectFourBoard } from './Board';
+
+const App = Client({
+  game: ConnectFour,
+  //board: ConnectFourBoard,
+});
 
 export default App;

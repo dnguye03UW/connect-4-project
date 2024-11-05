@@ -5,6 +5,16 @@
         https://boardgame.io/documentation/#/tutorial
 */
 
+import {
+    emptyCell,
+    p1disc,
+    p2disc,
+    numOfRows,
+    numOfColumns,
+    playerDiscLookup
+} from './constants';
+
+
 // returns true if grid is in a winning configuration
 function isVictory(grid, player) {
     const playerDisc = playerDiscLookup[player];
@@ -55,7 +65,7 @@ function isVictory(grid, player) {
 
 // returns true if grid is completely occupied
 function isDraw(grid) {
-    return grid.filter(c => c === emptyCell).length === 0;
+    return grid[5].filter(cell => cell === emptyCell).length === 0;
 }
 
 export { isVictory, isDraw };

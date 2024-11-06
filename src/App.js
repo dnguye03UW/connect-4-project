@@ -4,14 +4,13 @@
     and boardgame.io
         https://boardgame.io/documentation/#/tutorial
 */
-
-import { Client } from 'boardgame.io/react';
-import { ConnectFour } from './Game';
-import { ConnectFourBoard } from './Board';
+import { Client } from "boardgame.io/react";
+import { ConnectFour } from "./Game";
+import { ConnectFourBoard } from "./Board";
 
 const App = Client({
   game: ConnectFour,
-  //board: ConnectFourBoard,
+  board: ConnectFourBoard, // Uncomment this line to use the board
 });
 
 export default App;

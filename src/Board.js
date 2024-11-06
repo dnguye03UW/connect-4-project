@@ -1,10 +1,3 @@
-/*
-    adapted from tutorials by Patrick Johannessen 
-        https://www.lonesomecrowdedweb.com/blog/four-in-a-row-boardgameio/
-    and boardgame.io
-        https://boardgame.io/documentation/#/tutorial
-*/
-
 import React from "react";
 import { emptyCell, p1disc, p2disc } from "./constants";
 

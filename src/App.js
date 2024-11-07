@@ -1,28 +1,25 @@
 /*
-    adapted from tutorials by Patrick Johannessen 
-        https://www.lonesomecrowdedweb.com/blog/four-in-a-row-boardgameio/
-    and boardgame.io
-        https://boardgame.io/documentation/#/tutorial
+adapted from tutorials by Patrick Johannessen 
+https://www.lonesomecrowdedweb.com/blog/four-in-a-row-boardgameio/
+and boardgame.io
+https://boardgame.io/documentation/#/tutorial
 */
 
-// import { Client } from 'boardgame.io/react';
-// import { ConnectFour } from './Game';
-// import { ConnectFourBoard } from './Board';
-
-// const App = Client({
-//   game: ConnectFour,
-//   //board: ConnectFourBoard,
-// });
-
-// export default App;
-
+import React from "react";
 import { Client } from "boardgame.io/react";
 import { ConnectFour } from "./Game";
 import { ConnectFourBoard } from "./Board";
 
-const App = Client({
+const ConnectFourClient = Client({
   game: ConnectFour,
-  board: ConnectFourBoard, // Uncomment this line to use the board
+  board: ConnectFourBoard,
 });
+
+// TO DO: create header and space on right side for chat feature
+const App = () => (
+  <div>
+    <ConnectFourClient/>
+  </div>
+)
 
 export default App;

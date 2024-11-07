@@ -1,78 +1,22 @@
-// /*
-//     adapted from tutorials by Patrick Johannessen 
-//         https://www.lonesomecrowdedweb.com/blog/four-in-a-row-boardgameio/
-//     and boardgame.io
-//         https://boardgame.io/documentation/#/tutorial
-// */
+/*
+adapted from tutorials by Patrick Johannessen 
+https://www.lonesomecrowdedweb.com/blog/four-in-a-row-boardgameio/
+and boardgame.io
+https://boardgame.io/documentation/#/tutorial
+*/
 
-// import { isVictory, isDraw } from './winCondition';
-// import {
-//     emptyCell,
-//     p1disc,
-//     p2disc,
-//     numOfRows,
-//     numOfColumns,
-//     playerDiscLookup
-// } from './constants';
-
-
-// export const ConnectFour = {
-//     // create a 2D array filled with 'emptyCell' value
-//     setup: () => {
-//         const grid = {};
-//         for (var row = 0; row < numOfRows; row++) {
-//             grid[row] = Array(numOfColumns).fill(emptyCell);
-//         }
-//         return ({ grid: grid });
-//     },
-
-//     turn: {
-//         minMoves: 1,
-//         maxMoves: 1,
-//     },
-
-//     moves: {
-//         clickColumn(G, ctx, column) {
-//             // start from bottom of grid ( numOfRows - 1 ) and search for empty cell
-//             for (var rowId = numOfRows - 1; rowId >= 0; rowId--) {
-//                 if (G.grid[rowId][column] === emptyCell) {
-//                     G.grid[rowId][column] = playerDiscLookup[ctx.currentPlayer];
-//                     break;
-//                 }
-//             }
-//         }
-//     },
-
-//     endIf: ({ G, ctx }) => {
-//         if (isVictory(G.grid, ctx.currentPlayer)) {
-//             return { winner: ctx.currentPlayer };
-//         }
-//         if (isDraw(G.grid)) {
-//             return { draw: true };
-//         }
-//     },
-//     /*
-//     ai: {
-//         enumerate: (G, ctx) => {
-//             let moves = [];
-//             for (let i = 0; i < 9; i++) {
-//                 if (G.grid[i] === null) {
-//                     moves.push({ move: 'clickCell', args: [i] });
-//                 }
-//             }
-//             return moves;
-//         },
-//     },
-//     */
-// };
-
-import { isVictory, isDraw } from "./winCondition";
-import { emptyCell, p1disc, p2disc, numOfRows, numOfColumns, playerDiscLookup } from "./constants";
+import { INVALID_MOVE } from 'boardgame.io/core';
+import { isVictory, isDraw } from './winCondition';
+import { emptyCell, numOfRows, numOfColumns, playerDiscLookup } from './constants';
 
 export const ConnectFour = {
+  // create a 2D array filled with 'emptyCell' values
+  //  where [0][0] is the top leftmost corner and [numOfRows][numOfColumns] is the bottom rightmost corner
   setup: () => {
     const grid = Array.from({ length: numOfRows }, () => Array(numOfColumns).fill(emptyCell));
-    return { grid }; // 2D array grid
+
+    // return as a property with the grid as an attribute to the Game object 
+    return ({ grid: grid });
   },
 
   turn: {
@@ -81,14 +25,17 @@ export const ConnectFour = {
   },
 
   moves: {
-    clickColumn(G, ctx, column) {
-      for (let row = numOfRows - 1; row >= 0; row--) {
-        if (G.grid[row][column] === emptyCell) {
-          G.grid[row][column] = playerDiscLookup[ctx.currentPlayer];
-          break;
-        }
-      }
-    },
+    clickColumn: ({ G, ctx }, column) => {
+      /*
+      start from bottom of grid ( numOfRows - 1 ) and search for empty cell that matches the column index
+        ( G.grid[numOfRows - 1][column] ... G.grid[numOfRows - 2][column] ... G.grid[0][column])
+      if column is full, 
+        return INVALID_MOVE;
+      
+      once found, use:
+        G.grid[row][column] = playerDiscLookup[ctx.currentPlayer];
+      */
+    }
   },
 
   endIf: ({ G, ctx }) => {
@@ -99,7 +46,8 @@ export const ConnectFour = {
       return { draw: true };
     }
   },
+
+  /* TO DO (tentative): 
+      code AI
+  */
 };
-
-
-

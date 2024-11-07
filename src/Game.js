@@ -1,5 +1,5 @@
 // /*
-//     adapted from tutorials by Patrick Johannessen 
+//     adapted from tutorials by Patrick Johannessen
 //         https://www.lonesomecrowdedweb.com/blog/four-in-a-row-boardgameio/
 //     and boardgame.io
 //         https://boardgame.io/documentation/#/tutorial
@@ -14,7 +14,6 @@
 //     numOfColumns,
 //     playerDiscLookup
 // } from './constants';
-
 
 // export const ConnectFour = {
 //     // create a 2D array filled with 'emptyCell' value
@@ -81,7 +80,7 @@ export const ConnectFour = {
   },
 
   moves: {
-    clickColumn(G, ctx, column) {
+    clickColumn: ({ G, ctx }, column) => {
       for (let row = numOfRows - 1; row >= 0; row--) {
         if (G.grid[row][column] === emptyCell) {
           G.grid[row][column] = playerDiscLookup[ctx.currentPlayer];
@@ -100,6 +99,3 @@ export const ConnectFour = {
     }
   },
 };
-
-
-

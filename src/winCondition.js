@@ -57,7 +57,7 @@ function isVictory(grid, player) {
 
 // returns true if grid is completely occupied
 function isDraw(grid) {
-    return grid[5].filter(cell => cell === emptyCell).length === 0;
+    return grid.every((row) => row.every((cell) => cell !== emptyCell));
 }
 
 export { isVictory, isDraw };

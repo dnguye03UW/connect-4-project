@@ -6,15 +6,24 @@ https://boardgame.io/documentation/#/tutorial
 */
 
 import React from "react";
-import { emptyCell, p1disc, p2disc, numOfRows, numOfColumns, playerDiscLookup } from "./constants";
-import WhiteDisc from './circle-white.svg';
-import BlueDisc from './circle-blue.svg';
-import RedDisc from './circle-red.svg';
+import { p1disc, p2disc, numOfRows, numOfColumns } from "./constants";
+import WhiteDisc from "./circle-white.png";
+import BlueDisc from "./circle-blue.png";
+import RedDisc from "./circle-red.png";
 
 // takes in a cell's attribute and checks its value
 const Cell = ({ cell }) => {
     let cellImg;
     let cellStr;
+
+    // in-line styling
+    const imgStyle = {
+        width: "50px",
+        height: "50px",
+        textAlign: "center",
+        cursor: "pointer",
+    };
+
     switch (cell) {
         case p1disc:
             cellStr = "p1 disc";
@@ -30,13 +39,28 @@ const Cell = ({ cell }) => {
             break;
     }
     return (
-        <img alt={cellStr} src={cellImg} className="disc" />
+        <img style={imgStyle} alt={cellStr} src={cellImg} />
     );
 }
 
 export function ConnectFourBoard({ ctx, G, moves }) {
     // call the click event handler with the keys in the 2D array
     const clickColumn = (clickedCol) => moves.clickColumn(clickedCol);
+
+    // in-line styling
+    const cellStyle = {
+        width: "50px",
+        height: "50px",
+        lineHeight: "50px",
+        textAlign: "center",
+        cursor: "pointer",
+        margin: "5px",
+    };
+    const boardStyle = {
+        backgroundColor: "navy",
+        padding: "10px",
+        borderRadius: "15px",
+    };
 
     // create a 2D array where [0][0] is the top leftmost corner and [numOfRows][numOfColumns] is the bottom rightmost corner
     let boardBody = [];
@@ -46,8 +70,10 @@ export function ConnectFourBoard({ ctx, G, moves }) {
             // fill table with table data that passes its column number when clicked on 
             //   and uses the functional component Cell to return the appropriate image
             cells.push(
-                <td key={column} className="discdata" onClick={() => clickColumn(column)}>
-                    <Cell cell={G.grid[row][column]}/>
+                <td key={column}>
+                    <div style={cellStyle} onClick={() => clickColumn(column)}>
+                        <Cell cell={G.grid[row][column]} />
+                    </div>
                 </td>
             );
         }
@@ -57,16 +83,15 @@ export function ConnectFourBoard({ ctx, G, moves }) {
 
     return (
         <div>
-            <table id="board">
+            <table style={boardStyle} id="board">
                 <tbody>{boardBody}</tbody>
             </table>
-
         </div>
     );
-    
+
     /* TO DO (tentative):
             display players at the bottom (refer to mockup)
-            display whose turn it is (use "Your turn" for player's side, username for other player)
+            display whose turn it is or winner at top (use "Your turn" for player's side, username for other player)
             have available slots glow (refer to mockup)
     */
 

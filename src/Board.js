@@ -6,7 +6,7 @@
 // */
 
 import React from "react";
-import { emptyCell, p1disc, p2disc } from "./constants";
+import { emptyCell, p1disc, p2disc, numOfRows, numOfColumns, playerDiscLookup } from "./constants";
 
 export function ConnectFourBoard({ ctx, G, moves }) {
   const onClick = (columnIdx) => {
@@ -28,9 +28,9 @@ export function ConnectFourBoard({ ctx, G, moves }) {
   };
 
   let tbody = [];
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < numOfRows; i++) {
     let cells = [];
-    for (let j = 0; j < 7; j++) {
+    for (let j = 0; j < numOfColumns; j++) {
       cells.push(<td key={`${i}-${j}`}>{G.grid[i][j] !== emptyCell ? <div style={cellStyle}>{G.grid[i][j] === p1disc ? "🔴" : "🔵"}</div> : <button style={cellStyle} onClick={() => onClick(j)} />}</td>);
     }
     tbody.push(<tr key={i}>{cells}</tr>);

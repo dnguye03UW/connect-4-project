@@ -26,15 +26,18 @@ export const ConnectFour = {
 
   moves: {
     clickColumn: ({ G, ctx }, column) => {
-      /*
-      start from bottom of grid ( numOfRows - 1 ) and search for empty cell that matches the column index
-        ( G.grid[numOfRows - 1][column] ... G.grid[numOfRows - 2][column] ... G.grid[0][column])
-      if column is full, 
+      // column is full if top of board is occupied
+      if (G.grid[0][column] !== emptyCell) {
         return INVALID_MOVE;
-      
-      once found, use:
-        G.grid[row][column] = playerDiscLookup[ctx.currentPlayer];
-      */
+      }
+
+      // start from bottom of grid ( numOfRows - 1 ) and search for empty cell that matches the column index
+      for (let row = numOfRows - 1; row >= 0; row--) {
+        if (G.grid[row][column] === emptyCell) {
+          G.grid[row][column] = playerDiscLookup[ctx.currentPlayer];
+          break;
+        }
+      }
     }
   },
 

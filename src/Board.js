@@ -7,6 +7,7 @@ https://boardgame.io/documentation/#/tutorial
 
 import React from "react";
 import { p1disc, p2disc, numOfRows, numOfColumns } from "./constants";
+import { imgStyle, cellStyle, boardStyle } from "./inlineStyle";
 import WhiteDisc from "./circle-white.png";
 import BlueDisc from "./circle-blue.png";
 import RedDisc from "./circle-red.png";
@@ -16,13 +17,6 @@ const Cell = ({ cell }) => {
     let cellImg;
     let cellStr;
 
-    // in-line styling
-    const imgStyle = {
-        width: "50px",
-        height: "50px",
-        textAlign: "center",
-        cursor: "pointer",
-    };
 
     switch (cell) {
         case p1disc:
@@ -47,21 +41,6 @@ export function ConnectFourBoard({ ctx, G, moves }) {
     // call the click event handler with the keys in the 2D array
     const clickColumn = (clickedCol) => moves.clickColumn(clickedCol);
 
-    // in-line styling
-    const cellStyle = {
-        width: "50px",
-        height: "50px",
-        lineHeight: "50px",
-        textAlign: "center",
-        cursor: "pointer",
-        margin: "5px",
-    };
-    const boardStyle = {
-        backgroundColor: "navy",
-        padding: "10px",
-        borderRadius: "15px",
-    };
-
     // create a 2D array where [0][0] is the top leftmost corner and [numOfRows][numOfColumns] is the bottom rightmost corner
     let boardBody = [];
     for (let row = 0; row < numOfRows; row++) {
@@ -82,7 +61,7 @@ export function ConnectFourBoard({ ctx, G, moves }) {
     }
 
     return (
-        <div>
+        <div style={boardMargin}>
             <table style={boardStyle} id="board">
                 <tbody>{boardBody}</tbody>
             </table>
@@ -102,3 +81,7 @@ export function ConnectFourBoard({ ctx, G, moves }) {
     }
     */
 }
+
+const boardMargin = {
+    marginTop: "50px",
+};

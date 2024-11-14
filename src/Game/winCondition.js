@@ -5,7 +5,7 @@ and boardgame.io
 https://boardgame.io/documentation/#/tutorial
 */
 
-import { emptyCell, numOfRows, numOfColumns, playerDiscLookup } from "./constants";
+import { emptyCell, numOfRows, numOfColumns, playerDiscLookup } from "../Data/constants";
 
 // returns true if grid is in a winning configuration
 function isVictory(grid, player) {

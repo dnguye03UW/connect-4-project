@@ -7,7 +7,7 @@ https://boardgame.io/documentation/#/tutorial
 
 import { INVALID_MOVE } from 'boardgame.io/core';
 import { isVictory, isDraw } from './winCondition';
-import { emptyCell, numOfRows, numOfColumns, playerDiscLookup } from './constants';
+import { emptyCell, numOfRows, numOfColumns, playerDiscLookup } from '../Data/constants';
 
 export const ConnectFour = {
   // create a 2D array filled with 'emptyCell' values

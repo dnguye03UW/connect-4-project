@@ -6,31 +6,16 @@ https://boardgame.io/documentation/#/tutorial
 */
 
 import React from "react";
-import { headerStyle, mainStyle } from "./inlineStyle";
+import { headerStyle, mainStyle } from "./Data/inlineStyle";
 import { Client } from "boardgame.io/react";
-import { ConnectFour } from "./Game";
-import { ConnectFourBoard } from "./Board";
+import { ConnectFour } from "./Game/Game";
+import { ConnectFourBoard } from "./Game/Board";
 
 const ConnectFourClient = Client({
   game: ConnectFour,
   board: ConnectFourBoard,
 });
 
-const fullDisplay = {
-  minHeight: "100vh",
-};
-
-const boardFlexStyle = {
-  flexBasis: "75%",
-  justifyContent: "center",
-};
-
-const chatFlexStyle = {
-  flexBasis: "25%",
-  background: "lightgrey",
-};
-
-// TO DO: create space on right side for chat feature
 const App = () => (
   <div style={fullDisplay}>
 
@@ -51,5 +36,19 @@ const App = () => (
     </div>
   </div>
 )
+
+const fullDisplay = {
+  minHeight: "100vh",
+};
+
+const boardFlexStyle = {
+  flexBasis: "75%",
+  justifyContent: "center",
+};
+
+const chatFlexStyle = {
+  flexBasis: "25%",
+  background: "lightgrey",
+};
 
 export default App;

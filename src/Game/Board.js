@@ -6,17 +6,16 @@ https://boardgame.io/documentation/#/tutorial
 */
 
 import React from "react";
-import { p1disc, p2disc, numOfRows, numOfColumns } from "./constants";
-import { imgStyle, cellStyle, boardStyle } from "./inlineStyle";
-import WhiteDisc from "./circle-white.png";
-import BlueDisc from "./circle-blue.png";
-import RedDisc from "./circle-red.png";
+import { p1disc, p2disc, numOfRows, numOfColumns } from "../Data/constants";
+import { imgStyle, cellStyle, boardStyle } from "../Data/inlineStyle";
+import WhiteDisc from "../Assets/circle-white.png";
+import BlueDisc from "../Assets/circle-blue.png";
+import RedDisc from "../Assets/circle-red.png";
 
 // takes in a cell's attribute and checks its value
 const Cell = ({ cell }) => {
     let cellImg;
     let cellStr;
-
 
     switch (cell) {
         case p1disc:

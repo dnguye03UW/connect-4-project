@@ -1,18 +1,17 @@
-/*
-Adapted from tutorials by Patrick Johannessen 
-https://www.lonesomecrowdedweb.com/blog/four-in-a-row-boardgameio/
-and boardgame.io
-https://boardgame.io/documentation/#/tutorial
-*/
-
+import React from "react";
 import { INVALID_MOVE } from "boardgame.io/core";
-// import { emptyCell, numOfRows, numOfColumns, playerDiscLookup } from "../Data/constants";
+import { imgStyle, cellStyle, boardStyle } from "./inlineStyle";
+import WhiteDisc from "./Assets/circle-white.png";
+import BlueDisc from "./Assets/circle-blue.png";
+import RedDisc from "./Assets/circle-red.png";
 
+// Game constants
 const emptyCell = 0;
 const p1disc = 1;
 const p2disc = 2;
 const numOfRows = 6;
 const numOfColumns = 7;
+
 const playerDiscLookup = {
   0: p1disc,
   1: p2disc,
@@ -21,8 +20,6 @@ const playerDiscLookup = {
 export { emptyCell, p1disc, p2disc, numOfRows, numOfColumns, playerDiscLookup };
 
 export const ConnectFour = {
-  // Create a 2D array filled with 'emptyCell' values
-  // where [0][0] is the top-left corner and [numOfRows][numOfColumns] is the bottom-right corner
   setup: () => {
     const grid = Array.from({ length: numOfRows }, () => Array(numOfColumns).fill(emptyCell));
     return { grid };
@@ -35,12 +32,10 @@ export const ConnectFour = {
 
   moves: {
     clickColumn: ({ G, ctx }, column) => {
-      // Column is full if the top of the board is occupied
       if (G.grid[0][column] !== emptyCell) {
         return INVALID_MOVE;
       }
 
-      // Start from the bottom of the grid and search for an empty cell in the given column
       for (let row = numOfRows - 1; row >= 0; row--) {
         if (G.grid[row][column] === emptyCell) {
           G.grid[row][column] = playerDiscLookup[ctx.currentPlayer];
@@ -63,8 +58,7 @@ export const ConnectFour = {
 // Check if the grid is in a winning configuration
 function isVictory(grid, player) {
   const playerDisc = playerDiscLookup[player];
-  let row = 0;
-  let column = 0;
+  let row, column;
 
   // Horizontal Check
   for (column = 0; column < numOfColumns - 3; column++) {
@@ -109,3 +103,58 @@ function isVictory(grid, player) {
 function isDraw(grid) {
   return grid.every((row) => row.every((cell) => cell !== emptyCell));
 }
+
+// Component to render a single cell
+const Cell = ({ cell }) => {
+  let cellImg;
+  let cellStr;
+
+  switch (cell) {
+    case p1disc:
+      cellStr = "p1 disc";
+      cellImg = RedDisc;
+      break;
+    case p2disc:
+      cellStr = "p2 disc";
+      cellImg = BlueDisc;
+      break;
+    default:
+      cellStr = "no disc";
+      cellImg = WhiteDisc;
+      break;
+  }
+
+  return <img style={imgStyle} alt={cellStr} src={cellImg} />;
+};
+
+// Component to render the Connect Four board
+export function ConnectFourBoard({ ctx, G, moves }) {
+  const clickColumn = (clickedCol) => moves.clickColumn(clickedCol);
+
+  const boardBody = [];
+  for (let row = 0; row < numOfRows; row++) {
+    const cells = [];
+    for (let column = 0; column < numOfColumns; column++) {
+      cells.push(
+        <td key={column}>
+          <div style={cellStyle} onClick={() => clickColumn(column)}>
+            <Cell cell={G.grid[row][column]} />
+          </div>
+        </td>
+      );
+    }
+    boardBody.push(<tr key={row}>{cells}</tr>);
+  }
+
+  return (
+    <div style={boardMargin}>
+      <table style={boardStyle} id="board">
+        <tbody>{boardBody}</tbody>
+      </table>
+    </div>
+  );
+}
+
+const boardMargin = {
+  marginTop: "50px",
+};

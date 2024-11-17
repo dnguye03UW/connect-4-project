@@ -1,15 +1,8 @@
-/*
-adapted from tutorials by Patrick Johannessen 
-https://www.lonesomecrowdedweb.com/blog/four-in-a-row-boardgameio/
-and boardgame.io
-https://boardgame.io/documentation/#/tutorial
-*/
-
 import React from "react";
 import { headerStyle, mainStyle } from "./inlineStyle";
 import { Client } from "boardgame.io/react";
-import { ConnectFour } from "./Game/Game";
-import { ConnectFourBoard } from "./Game/Board";
+import { ConnectFour } from "./Game";
+import { ConnectFourBoard } from "./Game";
 
 const ConnectFourClient = Client({
   game: ConnectFour,

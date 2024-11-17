@@ -1,5 +1,5 @@
 import React from "react";
-import { headerStyle, mainStyle } from "./inlineStyle";
+import { headerStyle, mainStyle } from "./Game";
 import { Client } from "boardgame.io/react";
 import { ConnectFour } from "./Game";
 import { ConnectFourBoard } from "./Game";

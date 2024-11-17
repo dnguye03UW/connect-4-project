@@ -5,11 +5,7 @@ and boardgame.io
 https://boardgame.io/documentation/#/tutorial
 */
 
-<<<<<<< HEAD:src/winCondition.js
-import { emptyCell, p1disc, p2disc, numOfRows, numOfColumns, playerDiscLookup } from "./constants";
-=======
 import { emptyCell, numOfRows, numOfColumns, playerDiscLookup } from "../Data/constants";
->>>>>>> origin:src/Game/winCondition.js
 
 // returns true if grid is in a winning configuration
 function isVictory(grid, player) {
@@ -61,11 +57,8 @@ function isVictory(grid, player) {
 
 // returns true if grid is completely occupied
 function isDraw(grid) {
-<<<<<<< HEAD:src/winCondition.js
+  // return grid.every((row) => row.every((cell) => cell !== emptyCell));
   return grid.every((row) => row.every((cell) => cell !== emptyCell));
-=======
-    return grid.every((row) => row.every((cell) => cell !== emptyCell));
->>>>>>> origin:src/Game/winCondition.js
 }
 
 export { isVictory, isDraw };

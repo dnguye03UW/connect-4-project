@@ -1,9 +1,8 @@
-import React from "react";
 import { INVALID_MOVE } from "boardgame.io/core";
-// import { imgStyle, cellStyle, boardStyle } from "./inlineStyle";
 import WhiteDisc from "./assets/circle-white.png";
 import BlueDisc from "./assets/circle-blue.png";
 import RedDisc from "./assets/circle-red.png";
+import React from "react";
 
 // Game constants
 const emptyCell = 0;
@@ -26,7 +25,7 @@ export const ConnectFour = {
   },
 
   turn: {
-    minMoves: 1,
+    // minMoves: 1,
     maxMoves: 1,
   },
 
@@ -104,7 +103,14 @@ function isDraw(grid) {
   return grid.every((row) => row.every((cell) => cell !== emptyCell));
 }
 
-// Component to render a single cell
+// Cell
+
+// 	•	A functional component that renders a single cell in the Connect Four grid.
+// 	•	Displays:
+// 	•	A red disc (RedDisc) for Player 1.
+// 	•	A blue disc (BlueDisc) for Player 2.
+// 	•	An empty cell (WhiteDisc) otherwise.
+
 const Cell = ({ cell }) => {
   let cellImg;
   let cellStr;
@@ -127,7 +133,16 @@ const Cell = ({ cell }) => {
   return <img style={imgStyle} alt={cellStr} src={cellImg} />;
 };
 
-// Component to render the Connect Four board
+// ConnectFourBoard
+
+// 	•	A functional component that renders the full game board as an HTML table.
+// 	•	Interaction:
+// 	•	Each cell is clickable, triggering the clickColumn function for moves.
+// 	•	Structure:
+// 	•	Loops through numOfRows and numOfColumns to render the grid dynamically.
+// 	•	Styling:
+// 	•	Inline styles are applied for the board, cells, and other elements.
+
 export function ConnectFourBoard({ ctx, G, moves }) {
   const clickColumn = (clickedCol) => moves.clickColumn(clickedCol);
 

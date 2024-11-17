@@ -1,47 +1,77 @@
-// /*
-//     adapted from tutorials by Patrick Johannessen
-//         https://www.lonesomecrowdedweb.com/blog/four-in-a-row-boardgameio/
-//     and boardgame.io
-//         https://boardgame.io/documentation/#/tutorial
-// */
-
 import React from "react";
-import { emptyCell, p1disc, p2disc, numOfRows, numOfColumns, playerDiscLookup } from "./constants";
+import { p1disc, p2disc, numOfRows, numOfColumns } from "../Data/constants";
+import { imgStyle, cellStyle, boardStyle } from "../Data/inlineStyle";
+import WhiteDisc from "../Assets/circle-white.png";
+import BlueDisc from "../Assets/circle-blue.png";
+import RedDisc from "../Assets/circle-red.png";
+
+// takes in a cell's attribute and checks its value
+const Cell = ({ cell }) => {
+  let cellImg;
+  let cellStr;
+
+  switch (cell) {
+    case p1disc:
+      cellStr = "p1 disc";
+      cellImg = RedDisc;
+      break;
+    case p2disc:
+      cellStr = "p2 disc";
+      cellImg = BlueDisc;
+      break;
+    default:
+      cellStr = "no disc";
+      cellImg = WhiteDisc;
+      break;
+  }
+  return <img style={imgStyle} alt={cellStr} src={cellImg} />;
+};
 
 export function ConnectFourBoard({ ctx, G, moves }) {
-  const onClick = (columnIdx) => {
-    moves.clickColumn(columnIdx); // Directly call clickColumn with column index
-  };
+  // call the click event handler with the keys in the 2D array
+  const clickColumn = (clickedCol) => moves.clickColumn(clickedCol);
 
-  let winner = "";
-  if (ctx.gameover) {
-    winner = ctx.gameover.winner !== undefined ? <div id="winner">Winner: {ctx.gameover.winner}</div> : <div id="winner">Draw!</div>;
-  }
-
-  const cellStyle = {
-    border: "1px solid #555",
-    width: "50px",
-    height: "50px",
-    lineHeight: "50px",
-    textAlign: "center",
-    cursor: "pointer",
-  };
-
-  let tbody = [];
-  for (let i = 0; i < numOfRows; i++) {
+  // create a 2D array where [0][0] is the top leftmost corner and [numOfRows][numOfColumns] is the bottom rightmost corner
+  let boardBody = [];
+  for (let row = 0; row < numOfRows; row++) {
     let cells = [];
-    for (let j = 0; j < numOfColumns; j++) {
-      cells.push(<td key={`${i}-${j}`}>{G.grid[i][j] !== emptyCell ? <div style={cellStyle}>{G.grid[i][j] === p1disc ? "🔴" : "🔵"}</div> : <button style={cellStyle} onClick={() => onClick(j)} />}</td>);
+    for (let column = 0; column < numOfColumns; column++) {
+      // fill table with table data that passes its column number when clicked on
+      //   and uses the functional component Cell to return the appropriate image
+      cells.push(
+        <td key={column}>
+          <div style={cellStyle} onClick={() => clickColumn(column)}>
+            <Cell cell={G.grid[row][column]} />
+          </div>
+        </td>
+      );
     }
-    tbody.push(<tr key={i}>{cells}</tr>);
+    // push the completed row into the array
+    boardBody.push(<tr key={row}>{cells}</tr>);
   }
 
   return (
-    <div>
-      <table id="board">
-        <tbody>{tbody}</tbody>
+    <div style={boardMargin}>
+      <table style={boardStyle} id="board">
+        <tbody>{boardBody}</tbody>
       </table>
-      {winner}
     </div>
   );
+
+  /* TO DO (tentative):
+            display players at the bottom (refer to mockup)
+            display whose turn it is or winner at top (use "Your turn" for player's side, username for other player)
+            have available slots glow (refer to mockup)
+    */
+
+  /*
+    let winner = "";
+    if (ctx.gameover) {
+        winner = ctx.gameover.winner !== undefined ? <div id="winner">Winner: {ctx.gameover.winner}</div> : <div id="winner">Draw!</div>;
+    }
+    */
 }
+
+const boardMargin = {
+  marginTop: "50px",
+};

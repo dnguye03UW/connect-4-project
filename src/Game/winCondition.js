@@ -1,18 +1,8 @@
-/*
-adapted from tutorials by Patrick Johannessen 
-https://www.lonesomecrowdedweb.com/blog/four-in-a-row-boardgameio/
-and boardgame.io
-https://boardgame.io/documentation/#/tutorial
-*/
-
 import { emptyCell, numOfRows, numOfColumns, playerDiscLookup } from "../Data/constants";
 
-// returns true if grid is in a winning configuration
 function isVictory(grid, player) {
   const playerDisc = playerDiscLookup[player];
 
-  // victory algorithm by ferdelOlmo: https://stackoverflow.com/a/38211417/129967
-  // adapted by Patrick Johannessen: https://www.lonesomecrowdedweb.com/blog/four-in-a-row-boardgameio/
   let row = 0;
   let column = 0;
 

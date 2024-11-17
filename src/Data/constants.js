@@ -1,10 +1,3 @@
-/*
-    adapted from tutorials by Patrick Johannessen 
-        https://www.lonesomecrowdedweb.com/blog/four-in-a-row-boardgameio/
-    and boardgame.io
-        https://boardgame.io/documentation/#/tutorial
-*/
-
 const emptyCell = 0;
 const p1disc = 1;
 const p2disc = 2;

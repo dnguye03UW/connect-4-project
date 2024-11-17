@@ -1,5 +1,5 @@
 {
-  "name": "connect-4-project",
+  "name": "react-connect-4",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -7,7 +7,6 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "boardgame.io": "^0.50.2",
-    "esm": "^3.2.25",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-scripts": "5.0.1",

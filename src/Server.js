@@ -1,10 +1,9 @@
-const { Server } = require("boardgame.io/server");
-const { ConnectFour } = require("./Game/Game");
+// const { Server } = require("boardgame.io/server");
+// const { ConnectFour } = require("./Game/Game");
 
-const server = Server({
-  games: [ConnectFour],
-});
+// const PORT = process.env.PORT || 8000;
 
-server.run(8000, () => {
-  console.log("Server is running on http://localhost:8000");
-});
+// const server = Server({ games: [ConnectFour] });
+// server.run(PORT, () => {
+//   console.log(`Server running on http://localhost:${PORT}`);
+// });

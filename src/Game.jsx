@@ -25,7 +25,6 @@ export const ConnectFour = {
   },
 
   turn: {
-    // minMoves: 1,
     maxMoves: 1,
   },
 

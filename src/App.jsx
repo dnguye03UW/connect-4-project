@@ -1,8 +1,8 @@
 import React from "react";
-import { headerStyle, mainStyle } from "./Game";
+// import { headerStyle, mainStyle } from "./Game";
 import { Client } from "boardgame.io/react";
 import { ConnectFour, ConnectFourBoard } from "./Game";
-import { Local } from "boardgame.io/multiplayer";
+import { Local, SocketIO } from "boardgame.io/multiplayer";
 
 // const fullDisplay = {
 //   minHeight: "100vh",
@@ -21,7 +21,8 @@ import { Local } from "boardgame.io/multiplayer";
 const ConnectFourClient = Client({
   game: ConnectFour,
   board: ConnectFourBoard,
-  multiplayer: Local(),
+  // multiplayer: Local(),
+  multiplayer: SocketIO({ server: "localhost:8000" }),
 });
 
 const App = () => (

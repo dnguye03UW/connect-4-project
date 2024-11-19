@@ -1,7 +1,7 @@
 import { INVALID_MOVE } from "boardgame.io/core";
-import WhiteDisc from "./assets/circle-white.png";
-import BlueDisc from "./assets/circle-blue.png";
-import RedDisc from "./assets/circle-red.png";
+import WhiteDisc from "./Assets/circle-white.png";
+import BlueDisc from "./Assets/circle-blue.png";
+import RedDisc from "./Assets/circle-red.png";
 import React from "react";
 
 // Game constants
@@ -15,8 +15,6 @@ const playerDiscLookup = {
   0: p1disc,
   1: p2disc,
 };
-
-export { emptyCell, p1disc, p2disc, numOfRows, numOfColumns, playerDiscLookup };
 
 export const ConnectFour = {
   setup: () => {
@@ -196,20 +194,3 @@ const boardStyle = {
   margin: "auto",
   borderRadius: "15px",
 };
-
-const headerStyle = {
-  padding: "5px",
-  lineHeight: "0px",
-  textAlign: "center",
-  background: "darkblue",
-  color: "white",
-  fontSize: "30px",
-  fontWeight: "bolder",
-};
-
-const mainStyle = {
-  display: "flex",
-  minHeight: "100vh",
-};
-
-export { imgStyle, cellStyle, boardStyle, headerStyle, mainStyle };

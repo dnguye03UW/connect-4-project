@@ -1,35 +1,20 @@
-import React from "react";
-// import { headerStyle, mainStyle } from "./Game";
+import { React } from "react";
 import { Client } from "boardgame.io/react";
 import { ConnectFour, ConnectFourBoard } from "./Game";
+// eslint-disable-next-line
 import { Local, SocketIO } from "boardgame.io/multiplayer";
-
-// const fullDisplay = {
-//   minHeight: "100vh",
-// };
-
-// const boardFlexStyle = {
-//   flexBasis: "75%",
-//   justifyContent: "center",
-// };
-
-// const chatFlexStyle = {
-//   flexBasis: "25%",
-//   background: "lightgrey",
-// };
-
-const ConnectFourClient = Client({
+const App = Client({
   game: ConnectFour,
   board: ConnectFourBoard,
-  // multiplayer: Local(),
-  multiplayer: SocketIO({ server: "localhost:8000" }),
+  multiplayer: Local(),
+  // multiplayer: SocketIO({ server: "localhost:3000" }),
 });
 
-const App = () => (
+const ConnectFourClient = () => (
   <div>
-    <ConnectFourClient playerID="0" />
-    <ConnectFourClient playerID="1" />
+    <App playerID="0" />
+    <App playerID="1" />
   </div>
 );
 
-export default App;
+export default ConnectFourClient;

@@ -5,9 +5,9 @@ and boardgame.io
 https://boardgame.io/documentation/#/tutorial
 */
 
-import { INVALID_MOVE } from 'boardgame.io/core';
-import { isVictory, isDraw } from './winCondition';
-import { emptyCell, numOfRows, numOfColumns, playerDiscLookup } from '../Data/constants';
+import { INVALID_MOVE } from 'boardgame.io/dist/esm/core.js';
+import { isVictory, isDraw } from './winCondition.js';
+import { emptyCell, numOfRows, numOfColumns, playerDiscLookup } from '../Data/constants.js';
 
 export const ConnectFour = {
   // create a 2D array filled with 'emptyCell' values

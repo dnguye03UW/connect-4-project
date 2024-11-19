@@ -6,14 +6,16 @@ https://boardgame.io/documentation/#/tutorial
 */
 
 import React from "react";
-import { headerStyle, mainStyle } from "./Data/inlineStyle";
+import { SocketIO } from 'boardgame.io/multiplayer'
+import { headerStyle, mainStyle } from "./Data/inlineStyle.js";
 import { Client } from "boardgame.io/react";
-import { ConnectFour } from "./Game/Game";
-import { ConnectFourBoard } from "./Game/Board";
+import { ConnectFour } from "./Game/Game.js";
+import { ConnectFourBoard } from "./Game/Board.js";
 
 const ConnectFourClient = Client({
   game: ConnectFour,
   board: ConnectFourBoard,
+  multiplayer: SocketIO({ server: 'localhost:8000' }),
 });
 
 const App = () => (
@@ -26,7 +28,8 @@ const App = () => (
     <div style={mainStyle}>
 
       <div style={boardFlexStyle}>
-        <ConnectFourClient />
+        <ConnectFourClient playerID="0"/>
+        <ConnectFourClient playerID="1"/>
       </div>
 
       <div style={chatFlexStyle}>

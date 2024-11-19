@@ -6,8 +6,8 @@ https://boardgame.io/documentation/#/tutorial
 */
 
 import React from "react";
-import { p1disc, p2disc, numOfRows, numOfColumns } from "../Data/constants";
-import { imgStyle, cellStyle, boardStyle } from "../Data/inlineStyle";
+import { p1disc, p2disc, numOfRows, numOfColumns } from "../Data/constants.js";
+import { imgStyle, cellStyle, boardStyle } from "../Data/inlineStyle.js";
 import WhiteDisc from "../Assets/circle-white.png";
 import BlueDisc from "../Assets/circle-blue.png";
 import RedDisc from "../Assets/circle-red.png";

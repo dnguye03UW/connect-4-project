@@ -1,7 +1,7 @@
 import { INVALID_MOVE } from "boardgame.io/core";
-import WhiteDisc from "./Assets/circle-white.png";
-import BlueDisc from "./Assets/circle-blue.png";
-import RedDisc from "./Assets/circle-red.png";
+import WhiteDisc from "./assets/circle-white.png";
+import BlueDisc from "./assets/circle-blue.png";
+import RedDisc from "./assets/circle-red.png";
 import React from "react";
 
 // Game constants

@@ -1,9 +1,8 @@
-const { Server, Origins } = require("boardgame.io/server");
-const { ConnectFour } = require("./Game.jsx");
+// const { Server } = require("boardgame.io/server");
+// const { ConnectFour } = require("./Game.jsx");
 
-const server = Server({
-  games: [ConnectFour],
-  //   origins: [Origins.LOCALHOST],
-});
+// const server = Server({
+//   games: [ConnectFour],
+// });
 
-server.run(8000);
+// server.run(8000);

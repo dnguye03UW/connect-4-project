@@ -4,33 +4,35 @@ import { Client } from "boardgame.io/react";
 import { ConnectFour, ConnectFourBoard } from "./Game";
 import { Local } from "boardgame.io/multiplayer";
 
-// const fullDisplay = {
-//   minHeight: "100vh",
-// };
+// const ConnectFourClient = Client({
+//   game: ConnectFour,
+//   board: ConnectFourBoard,
+//   multiplayer: Local(),
+//   // multiplayer: SocketIO({ server: "localhost:3000" }),
+// });
 
-// const boardFlexStyle = {
-//   flexBasis: "75%",
-//   justifyContent: "center",
-// };
+// const App = () => (
+//   <div>
+//     <ConnectFourClient playerID="0" />
+//     <ConnectFourClient playerID="1" />
+//   </div>
+// );
 
-// const chatFlexStyle = {
-//   flexBasis: "25%",
-//   background: "lightgrey",
-// };
+const ConnectFourClient = () => (
+  <div>
+    <App playerID="0" />
+    <App playerID="1" />
+  </div>
+);
 
-const ConnectFourClient = Client({
+const App = Client({
   game: ConnectFour,
   board: ConnectFourBoard,
   multiplayer: Local(),
   // multiplayer: SocketIO({ server: "localhost:3000" }),
 });
 
-const App = () => (
-  <div>
-    <ConnectFourClient playerID="0" />
-    <ConnectFourClient playerID="1" />
-  </div>
-);
+export default ConnectFourClient;
 
 const fullDisplay = {
   minHeight: "100vh",
@@ -60,5 +62,3 @@ const mainStyle = {
   display: "flex",
   minHeight: "100vh",
 };
-
-export default ConnectFourClient;

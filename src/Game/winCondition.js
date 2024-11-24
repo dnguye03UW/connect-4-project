@@ -1,52 +1,67 @@
 /*
-adapted from tutorials by Patrick Johannessen 
-https://www.lonesomecrowdedweb.com/blog/four-in-a-row-boardgameio/
-and boardgame.io
-https://boardgame.io/documentation/#/tutorial
+    adapted from tutorials by Patrick Johannessen 
+    https://www.lonesomecrowdedweb.com/blog/four-in-a-row-boardgameio/
+    and boardgame.io
+    https://boardgame.io/documentation/#/tutorial
 */
 
-import { emptyCell, numOfRows, numOfColumns, playerDiscLookup } from "../Data/constants.js";
+const { emptyCell, numOfRows, numOfColumns, playerDiscLookup } = require('../Data/constants');
 
-// returns true if grid is in a winning configuration
+// Function to check for victory
 function isVictory(grid, player) {
     const playerDisc = playerDiscLookup[player];
 
-    // victory algorithm by ferdelOlmo: https://stackoverflow.com/a/38211417/129967
-    // adapted by Patrick Johannessen: https://www.lonesomecrowdedweb.com/blog/four-in-a-row-boardgameio/
-    let row = 0;
-    let column = 0;
-
-    // horizontalCheck
-    for (column = 0; column < numOfColumns - 3; column++) {
-        for (row = 0; row < numOfRows; row++) {
-            if (grid[row][column] === playerDisc && grid[row][column + 1] === playerDisc && grid[row][column + 2] === playerDisc && grid[row][column + 3] === playerDisc) {
+    // Horizontal check
+    for (let row = 0; row < numOfRows; row++) {
+        for (let col = 0; col < numOfColumns - 3; col++) {
+            if (
+                grid[row][col] === playerDisc &&
+                grid[row][col + 1] === playerDisc &&
+                grid[row][col + 2] === playerDisc &&
+                grid[row][col + 3] === playerDisc
+            ) {
                 return true;
             }
         }
     }
 
-    // verticalCheck
-    for (row = 0; row < numOfRows - 3; row++) {
-        for (column = 0; column < numOfColumns; column++) {
-            if (grid[row][column] === playerDisc && grid[row + 1][column] === playerDisc && grid[row + 2][column] === playerDisc && grid[row + 3][column] === playerDisc) {
+    // Vertical check
+    for (let row = 0; row < numOfRows - 3; row++) {
+        for (let col = 0; col < numOfColumns; col++) {
+            if (
+                grid[row][col] === playerDisc &&
+                grid[row + 1][col] === playerDisc &&
+                grid[row + 2][col] === playerDisc &&
+                grid[row + 3][col] === playerDisc
+            ) {
                 return true;
             }
         }
     }
 
-    // ascendingDiagonalCheck
-    for (row = 3; row < numOfRows; row++) {
-        for (column = 0; column < numOfColumns - 3; column++) {
-            if (grid[row][column] === playerDisc && grid[row - 1][column + 1] === playerDisc && grid[row - 2][column + 2] === playerDisc && grid[row - 3][column + 3] === playerDisc) {
+    // Ascending diagonal check
+    for (let row = 3; row < numOfRows; row++) {
+        for (let col = 0; col < numOfColumns - 3; col++) {
+            if (
+                grid[row][col] === playerDisc &&
+                grid[row - 1][col + 1] === playerDisc &&
+                grid[row - 2][col + 2] === playerDisc &&
+                grid[row - 3][col + 3] === playerDisc
+            ) {
                 return true;
             }
         }
     }
 
-    // descendingDiagonalCheck
-    for (row = 3; row < numOfRows; row++) {
-        for (column = 3; column < numOfColumns; column++) {
-            if (grid[row][column] === playerDisc && grid[row - 1][column - 1] === playerDisc && grid[row - 2][column - 2] === playerDisc && grid[row - 3][column - 3] === playerDisc) {
+    // Descending diagonal check
+    for (let row = 0; row < numOfRows - 3; row++) {
+        for (let col = 0; col < numOfColumns - 3; col++) {
+            if (
+                grid[row][col] === playerDisc &&
+                grid[row + 1][col + 1] === playerDisc &&
+                grid[row + 2][col + 2] === playerDisc &&
+                grid[row + 3][col + 3] === playerDisc
+            ) {
                 return true;
             }
         }
@@ -55,9 +70,9 @@ function isVictory(grid, player) {
     return false;
 }
 
-// returns true if grid is completely occupied
+// Function to check for a draw
 function isDraw(grid) {
     return grid.every((row) => row.every((cell) => cell !== emptyCell));
 }
 
-export { isVictory, isDraw };
+module.exports = { isVictory, isDraw };

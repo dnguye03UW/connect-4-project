@@ -6,38 +6,27 @@ https://boardgame.io/documentation/#/tutorial
 */
 
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { SocketIO } from 'boardgame.io/multiplayer'
 import { headerStyle, mainStyle } from "./Data/inlineStyle.js";
 import { Client } from "boardgame.io/react";
 import { ConnectFour } from "./Game/Game.js";
 import { ConnectFourBoard } from "./Game/Board.js";
+import Home from "./Pages/Home.jsx";
 
 const ConnectFourClient = Client({
   game: ConnectFour,
   board: ConnectFourBoard,
-  multiplayer: SocketIO({ server: 'localhost:8000' }),
+  debug: true,
 });
 
 const App = () => (
-  <div style={fullDisplay}>
-
-    <div class="header" style={headerStyle}>
-      <p>Connect Four Online</p>
-    </div>
-
-    <div style={mainStyle}>
-
-      <div style={boardFlexStyle}>
-        <ConnectFourClient playerID="0"/>
-        <ConnectFourClient playerID="1"/>
-      </div>
-
-      <div style={chatFlexStyle}>
-
-      </div>
-
-    </div>
-  </div>
+  <Router>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/game" element={<ConnectFourClient />} />
+    </Routes>
+  </Router>
 )
 
 const fullDisplay = {

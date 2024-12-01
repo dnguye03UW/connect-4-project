@@ -15,7 +15,7 @@ const playerDiscLookup = {
     "1": p2disc,
 };
 
-export {
+module.exports = {
     emptyCell,
     p1disc,
     p2disc,

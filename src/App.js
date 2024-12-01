@@ -1,57 +1,71 @@
-/*
-adapted from tutorials by Patrick Johannessen 
-https://www.lonesomecrowdedweb.com/blog/four-in-a-row-boardgameio/
-and boardgame.io
-https://boardgame.io/documentation/#/tutorial
-*/
-
-import React from "react";
-import { SocketIO } from 'boardgame.io/multiplayer'
-import { headerStyle, mainStyle } from "./Data/inlineStyle.js";
-import { Client } from "boardgame.io/react";
-import { ConnectFour } from "./Game/Game.js";
-import { ConnectFourBoard } from "./Game/Board.js";
+// App.js
+import React, { useState } from 'react';
+import { Client } from 'boardgame.io/react';
+import { SocketIO } from 'boardgame.io/multiplayer';
+import { headerStyle, mainStyle } from './Data/inlineStyle.js';
+import { ConnectFour } from './Game/Game.js';
+import { ConnectFourBoard } from './Game/Board.js';
+import LobbySetup from './LobbySetup';
 
 const ConnectFourClient = Client({
   game: ConnectFour,
   board: ConnectFourBoard,
-  multiplayer: SocketIO({ server: 'localhost:8000' }),
+  multiplayer: SocketIO({ server: 'http://localhost:8000' }),
 });
 
-const App = () => (
-  <div style={fullDisplay}>
+const App = () => {
+  const [playerName, setPlayerName] = useState(null);
+  const [playerID, setPlayerID] = useState(null);
+  const [matchID, setMatchID] = useState(null);
 
-    <div class="header" style={headerStyle}>
-      <p>Connect Four Online</p>
-    </div>
+  const onMatchJoined = (name, matchID, isCreator) => {
+    setPlayerName(name);
+    setMatchID(matchID);
+    // Assign player ID based on whether the player is creating or joining
+    setPlayerID(isCreator ? '0' : '1');
+  };
 
-    <div style={mainStyle}>
-
-      <div style={boardFlexStyle}>
-        <ConnectFourClient playerID="0"/>
-        <ConnectFourClient playerID="1"/>
+  return (
+    <div style={fullDisplay}>
+      <div className="header" style={headerStyle}>
+        <p>Connect Four Online</p>
       </div>
 
-      <div style={chatFlexStyle}>
+      <div style={mainStyle}>
+        {!playerID ? (
+          <LobbySetup onMatchJoined={onMatchJoined} />
+        ) : (
+          <div style={boardFlexStyle}>
+            <ConnectFourClient
+              playerID={playerID}
+              matchID={matchID}
+              credentials={playerName}
+            />
+          </div>
+        )}
 
+        <div style={chatFlexStyle}>
+          {/* Chat functionality or additional components can be added here */}
+        </div>
       </div>
-
     </div>
-  </div>
-)
+  );
+};
 
 const fullDisplay = {
-  minHeight: "100vh",
+  minHeight: '100vh',
 };
 
 const boardFlexStyle = {
-  flexBasis: "75%",
-  justifyContent: "center",
+  flexBasis: '75%',
+  justifyContent: 'center',
+  display: 'flex',
+  alignItems: 'center',
 };
 
 const chatFlexStyle = {
-  flexBasis: "25%",
-  background: "lightgrey",
+  flexBasis: '25%',
+  background: 'lightgrey',
 };
 
 export default App;

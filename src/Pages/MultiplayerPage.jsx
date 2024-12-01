@@ -10,8 +10,8 @@ const ConnectFourClient = Client({
     game: ConnectFour({isCPU: false}),
     board: ConnectFourBoard,
     multiplayer: SocketIO({ server: 'http://localhost:8000' }),
-    setupData: {isCPU: false}
-});
+    debug: true
+  });
 
 function MultiplayerPage() {
     const [playerName, setPlayerName] = useState(null);

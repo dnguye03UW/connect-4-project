@@ -3,11 +3,13 @@ const { INVALID_MOVE } = require('boardgame.io/core');
 const { isVictory, isDraw } = require('./winCondition');
 const { emptyCell, numOfRows, numOfColumns, playerDiscLookup } = require('../Data/constants');
 
-const ConnectFour = {
+const ConnectFour = customData => ({
   name: 'connect-four', // Added a name property for the lobby
-  setup: () => {
+  setup: ctx => {
     const grid = Array.from({ length: numOfRows }, () => Array(numOfColumns).fill(emptyCell));
-    return { grid };
+    const isCPU = customData?.isCPU || false;
+    console.log("isCPU: " + isCPU);
+    return { grid, isCPU };
   },
 
   turn: {
@@ -40,6 +42,6 @@ const ConnectFour = {
       return { draw: true };
     }
   },
-};
+});
 
 module.exports = { ConnectFour };

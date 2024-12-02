@@ -6,7 +6,8 @@ import { headerStyle, mainStyle } from '../Data/inlineStyle.js';
 
 const ConnectFourClient = Client({
     game: ConnectFour({isCPU: true}),
-    board: ConnectFourBoard
+    board: ConnectFourBoard,
+    debug: false
 });
 
 function SoloPage() {
@@ -15,13 +16,20 @@ function SoloPage() {
         <div className="header" style={headerStyle}>
             <p>Connect Four Online</p>
         </div>
-        <div style={mainStyle}>
+        <div style={boardFlexStyle}>
             <ConnectFourClient 
                 playerID='0'/>
         </div>
         </div>
     );
 }
+
+const boardFlexStyle = {
+    flexBasis: '75%',
+    justifyContent: 'center',
+    display: 'flex',
+    alignItems: 'center',
+  };
 
 export default SoloPage;
 

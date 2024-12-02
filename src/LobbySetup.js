@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './LobbySetup.css';
+import './Pages/LobbySetup.css';
 
 const LobbySetup = ({ onMatchJoined }) => {
   const [playerName, setPlayerName] = useState('');

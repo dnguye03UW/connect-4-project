@@ -5,7 +5,6 @@ A web-based application that lets you play Connect 4 against friends, random use
 **This applications requires:**\
 [Node.js](https://nodejs.org/en)\
 [boardgame.io](https://boardgame.io/)
-[esm](https://github.com/standard-things/esm)
 
 Instructions on how to install these depencencies within the project directory is located below.
 
@@ -14,14 +13,14 @@ After downloading or cloning the repository, open your terminal and within the p
 ```
 npm install
 npm install boardgame.io
-npm install esm
 ```
 This step only needs to be performed once.
 
 Afterwards, the project can be run in development mode by doing the following command within the project directory:
+
 In one terminal, run
 ```
-npm run serve
+node server.js
 ```
 Next, open a new terminal and run
 ```

@@ -4,7 +4,7 @@ const path = require('path');
 const { ConnectFour } = require('./src/Game/Game'); // Adjust the path if necessary
 
 const server = Server({
-  games: [ConnectFour],
+  games: [ConnectFour()],
   origins: [Origins.LOCALHOST],
 });
 

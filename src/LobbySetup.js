@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
+import './LobbySetup.css';
 
 const LobbySetup = ({ onMatchJoined }) => {
   const [playerName, setPlayerName] = useState('');
   const [matchID, setMatchID] = useState('');
   const [creatingMatch, setCreatingMatch] = useState(false);
-  const [isReady, setIsReady] = useState(false);
 
   const handleCreateMatch = () => {
     const newMatchID = Math.random().toString(36).substr(2, 9);
     setMatchID(newMatchID);
     setCreatingMatch(true);
-    // Do not call onMatchJoined yet
   };
 
   const handleJoinMatch = () => {
@@ -18,19 +17,18 @@ const LobbySetup = ({ onMatchJoined }) => {
   };
 
   const handleStartGame = () => {
-    // Now call onMatchJoined
     onMatchJoined(playerName, matchID, true);
   };
 
   return (
-    <div style={lobbyContainerStyle}>
-      <h2>Connect Four Lobby</h2>
+    <div className="lobby-container">
+      <h2 className="lobby-title">Connect Four Lobby</h2>
       <input
         type="text"
         placeholder="Enter your name"
         value={playerName}
         onChange={(e) => setPlayerName(e.target.value)}
-        style={inputStyle}
+        className="lobby-input"
       />
       {!creatingMatch ? (
         <>
@@ -39,30 +37,30 @@ const LobbySetup = ({ onMatchJoined }) => {
             placeholder="Enter Match ID to join"
             value={matchID}
             onChange={(e) => setMatchID(e.target.value)}
-            style={inputStyle}
+            className="lobby-input"
           />
           <button
             onClick={handleJoinMatch}
-            style={buttonStyle}
+            className="lobby-button"
             disabled={!playerName || !matchID}
           >
             Join Match
           </button>
           <button
             onClick={handleCreateMatch}
-            style={buttonStyle}
+            className="lobby-button"
             disabled={!playerName}
           >
             Create New Match
           </button>
         </>
       ) : (
-        <div style={createdMatchStyle}>
+        <div className="created-match">
           <p>Match created! Share this Match ID with your opponent:</p>
-          <p style={matchIDStyle}>{matchID}</p>
+          <p className="match-id">{matchID}</p>
           <button
             onClick={handleStartGame}
-            style={buttonStyle}
+            className="lobby-button"
             disabled={!playerName}
           >
             Start Game
@@ -72,38 +70,5 @@ const LobbySetup = ({ onMatchJoined }) => {
     </div>
   );
 };
-
-
-const lobbyContainerStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  marginTop: '50px',
-};
-
-const inputStyle = {
-  padding: '10px',
-  fontSize: '16px',
-  margin: '10px',
-  width: '300px',
-};
-
-const buttonStyle = {
-  padding: '10px 20px',
-  fontSize: '16px',
-  margin: '10px',
-};
-
-const matchIDStyle = {
-  fontSize: '20px',
-  fontWeight: 'bold',
-};
-
-const createdMatchStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-};
-
 
 export default LobbySetup;

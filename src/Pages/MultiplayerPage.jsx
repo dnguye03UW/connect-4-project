@@ -10,7 +10,7 @@ const ConnectFourClient = Client({
     game: ConnectFour(),
     board: ConnectFourBoard,
     multiplayer: SocketIO({ server: 'http://localhost:8000' }),
-    debug: false
+    debug: true
   });
 
 function MultiplayerPage() {

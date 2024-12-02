@@ -1,0 +1,79 @@
+.lobby-container {
+  margin-top: -20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  width: 15000%;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Title styling */
+.lobby-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+.lobby-input {
+  padding: 12px 15px;
+  font-size: 16px;
+  margin: 10px;
+  width: 300px;
+  border: 2px solid #ffffff;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.lobby-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.lobby-button {
+  padding: 15px 30px;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: #ff5722;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.lobby-button:disabled {
+  background-color: #888888;
+  cursor: not-allowed;
+}
+
+.lobby-button:hover:not(:disabled) {
+  background-color: #e64a19;
+  transform: scale(1.05);
+}
+
+.lobby-button:active:not(:disabled) {
+  background-color: #d84315;
+  transform: scale(0.95);
+}
+
+.match-id {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 15px 0;
+}
+.created-match {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  color: white;
+}

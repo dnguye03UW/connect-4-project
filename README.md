@@ -3,7 +3,7 @@ A web-based application that lets you play Connect 4 against friends, random use
 
 ## Dependencies
 **This applications requires:**\
-[Node.js](https://nodejs.org/en)\
+[Node.js](https://nodejs.org/en)
 
 ## Important
 After downloading or cloning the repository, open your terminal and within the project directory, run:

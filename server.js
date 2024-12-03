@@ -1,4 +1,3 @@
-// server.js
 const { Server, Origins } = require('boardgame.io/server');
 const path = require('path');
 const { ConnectFour } = require('./src/Game/Game'); // Adjust the path if necessary

@@ -4,15 +4,11 @@ A web-based application that lets you play Connect 4 against friends, random use
 ## Dependencies
 **This applications requires:**\
 [Node.js](https://nodejs.org/en)\
-[boardgame.io](https://boardgame.io/)
-
-Instructions on how to install these depencencies within the project directory is located below.
 
 ## Important
 After downloading or cloning the repository, open your terminal and within the project directory, run:
 ```
 npm install
-npm install boardgame.io
 ```
 This step only needs to be performed once.
 

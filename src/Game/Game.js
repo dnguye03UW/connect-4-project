@@ -1,10 +1,9 @@
-// Game.js
 const { INVALID_MOVE } = require('boardgame.io/core');
 const { isVictory, isDraw } = require('./winCondition');
 const { emptyCell, numOfRows, numOfColumns, playerDiscLookup } = require('../Data/constants');
 
 const ConnectFour = customData => ({
-  name: 'connect-four', // Added a name property for the lobby
+  name: 'connect-four',
   setup: ctx => {
     const grid = Array.from({ length: numOfRows }, () => Array(numOfColumns).fill(emptyCell));
     const isCPU = customData?.isCPU || false;
@@ -18,33 +17,33 @@ const ConnectFour = customData => ({
     onEnd: ({ G, ctx }) => {
       if (G.isCPU) {
         // If move was made by player 0 (user), find all valid moves
-      if (ctx.currentPlayer === "0") {
-        let validColumns = [];
-        for (let col = 0; col < numOfColumns; col++) {
-          if (G.grid[0][col] === emptyCell) {
-            validColumns.push(col);
+        if (ctx.currentPlayer === "0") {
+          let validColumns = [];
+          for (let col = 0; col < numOfColumns; col++) {
+            if (G.grid[0][col] === emptyCell) {
+              validColumns.push(col);
+            }
           }
-        }
-        
-        // CPU randomly selects a move of the valid options and plays it
-        if (validColumns.length > 0) {
-          const cpuColumn = validColumns[Math.floor(Math.random() * validColumns.length)];
-          for (let row = numOfRows - 1; row >= 0; row--) {
-            if (G.grid[row][cpuColumn] === emptyCell) {
-              G.grid[row][cpuColumn] = playerDiscLookup["1"];
-              break;
+
+          // CPU randomly selects a move of the valid options and plays it
+          if (validColumns.length > 0) {
+            const cpuColumn = validColumns[Math.floor(Math.random() * validColumns.length)];
+            for (let row = numOfRows - 1; row >= 0; row--) {
+              if (G.grid[row][cpuColumn] === emptyCell) {
+                G.grid[row][cpuColumn] = playerDiscLookup["1"];
+                break;
+              }
             }
           }
         }
-      }
         console.log("Game ended in CPU mode");
       }
     },
     order: {
       // player 0 will always make the first move
       first: () => 0,
-      next: ({G, ctx}) => {
-        // If CPU is enabled, always skill player 1 turn since CPU acts as that player
+      next: ({ G, ctx }) => {
+        // If CPU is enabled, always player 1 turn since CPU acts as that player
         if (G.isCPU) {
           return 0;
         }

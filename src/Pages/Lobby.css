@@ -14,7 +14,6 @@
   box-sizing: border-box;
 }
 
-/* Title styling */
 .lobby-title {
   font-size: 2.5rem;
   font-weight: bold;
@@ -76,4 +75,8 @@
   align-items: center;
   margin-top: 20px;
   color: white;
+}
+
+.error-message {
+  color: red;
 }

@@ -1,4 +1,3 @@
-// Board.js
 import React from 'react';
 import { p1disc, p2disc, numOfRows, numOfColumns } from '../Data/constants.js';
 import { imgStyle, cellStyle, boardStyle } from '../Data/inlineStyle.js';

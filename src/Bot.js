@@ -1,4 +1,3 @@
-// Bot.js
 import { MCTSBot, RandomBot } from 'boardgame.io/ai';
 import { emptyCell, numOfRows, numOfColumns, playerDiscLookup } from './Data/constants';
 import { isVictory } from './Game/winCondition';

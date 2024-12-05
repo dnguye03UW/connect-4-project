@@ -16,9 +16,10 @@ const ConnectFourLobby = ({ onMatchJoined }) => {
    * React's useState does not immediately have the values ready upon updating.
    * You need to save the values in variables manually.
    * 
-   * HOWEVER, local variables are not saved and are reset every render, and by the time
-   * onMatchJoined(matchID, playerData) is called when the host is joining, both are updated and
-   * activeMatchID has been cleared.
+   * HOWEVER, local variables are not saved and are reset every render, but once
+   * the local variables have been cleared, the state variables have been updated.
+   * This means by the time onMatchJoined(matchID, playerData) is called when the host is joining,
+   * the state variables have been updated and the local variables are now undefined.
    */
   var activeMatchID, activePlayerName, activePlayerData;
   function saveMatchID(value) {

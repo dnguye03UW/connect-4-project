@@ -5,6 +5,7 @@ import { ConnectFourBoard } from '../Game/Board.js';
 import { SocketIO } from 'boardgame.io/multiplayer';
 import { headerStyle, mainStyle } from '../Data/inlineStyle.js';
 import ConnectFourLobby from '../Lobby.js';
+import Chatroom from '../Chat.js';
 
 const ConnectFourClient = Client({
   game: ConnectFour(),
@@ -18,8 +19,13 @@ function MultiplayerPage() {
   const [matchID, setMatchID] = useState(null);
   const [playerData, setPlayerData] = useState([]);
 
-  // NOTE: React's useState does not immediately have the values ready upon updating.
-  //       You need to save the values in variables manually.
+  /** NOTE: 
+   * React's useState does not immediately have the values ready upon updating.
+   * You need to save the values in variables manually.
+   * 
+   * HOWEVER, local variables are not saved and are reset every render, but once
+   * the local variables have been cleared, the state variables have been updated.
+   */
   let activeMatchID, activePlayerData;
   function saveMatchID(value) {
     activeMatchID = value;

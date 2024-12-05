@@ -36,14 +36,16 @@ const ConnectFour = customData => ({
             }
           }
         }
-        console.log("Game ended in CPU mode");
+        // Set player to player 1
+        ctx.currentPlayer = "1";
       }
     },
+    
     order: {
-      // player 0 will always make the first move
+      // Player 0 will always make the first move
       first: () => 0,
       next: ({ G, ctx }) => {
-        // If CPU is enabled, always player 1 turn since CPU acts as that player
+        // If CPU is enabled, go back to player 0
         if (G.isCPU) {
           return 0;
         }

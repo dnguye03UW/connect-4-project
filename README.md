@@ -20,7 +20,8 @@ node server.js
 ```
 Next, open a new terminal and run
 ```
-npm start
+npm run build
+npx serve -s build
 ```
 The website will run on [http://localhost:3000](http://localhost:3000) in your browser.\
 Any locally saved changes will automatically reload the page and implement the changes.

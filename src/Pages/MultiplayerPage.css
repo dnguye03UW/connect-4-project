@@ -1,0 +1,42 @@
+/* MultiplayerPage.css */
+
+/* Full display container similar to Home but can differ if needed */
+.multiplayer-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header styling (reuse or adjust as needed) */
+.multiplayer-header {
+    padding: 5px;
+    line-height: 0px;
+    text-align: center;
+    background: darkblue;
+    color: white;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+/* Main style to arrange board and chat side-by-side */
+.multiplayer-main {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Board section takes up 75% horizontally */
+.board-section {
+    flex-basis: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Chat section takes up 25% horizontally */
+.chat-section {
+    flex-basis: 25%;
+    background: lightgrey;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}

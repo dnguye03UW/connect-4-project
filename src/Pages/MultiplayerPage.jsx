@@ -3,91 +3,55 @@ import { Client } from 'boardgame.io/react';
 import { ConnectFour } from '../Game/Game.js';
 import { ConnectFourBoard } from '../Game/Board.js';
 import { SocketIO } from 'boardgame.io/multiplayer';
-import { headerStyle, mainStyle } from '../Data/inlineStyle.js';
-import ConnectFourLobby from '../Lobby.js';
-import Chatroom from '../Chat.js';
+import LobbySetup from '../LobbySetup';
+import Chat from '../Chat.js';
+import './MultiplayerPage.css'; // Import the CSS
 
 const ConnectFourClient = Client({
   game: ConnectFour(),
-  numPlayers: 2,
   board: ConnectFourBoard,
   multiplayer: SocketIO({ server: 'http://localhost:8000' }),
   debug: true
 });
 
 function MultiplayerPage() {
+  const [playerName, setPlayerName] = useState(null);
+  const [playerID, setPlayerID] = useState(null);
   const [matchID, setMatchID] = useState(null);
-  const [playerData, setPlayerData] = useState([]);
 
-  /** NOTE: 
-   * React's useState does not immediately have the values ready upon updating.
-   * You need to save the values in variables manually.
-   * 
-   * HOWEVER, local variables are not saved and are reset every render, but once
-   * the local variables have been cleared, the state variables have been updated.
-   */
-  let activeMatchID, activePlayerData;
-  function saveMatchID(value) {
-    activeMatchID = value;
-    setMatchID(value);
-  }
-  function savePlayerData(value) {
-    activePlayerData = value;
-    setPlayerData(value);
-  }
-
-  // Called in Lobby.js
-  const onMatchJoined = (matchID, playerToken) => {
-    saveMatchID(matchID);
+  const onMatchJoined = (name, matchID, isCreator) => {
+    setPlayerName(name);
     setMatchID(matchID);
-    savePlayerData(playerToken);
-    setPlayerData(playerToken);
+    setPlayerID(isCreator ? '0' : '1');
   };
 
   return (
-    <div style={fullDisplay}>
-      <div className="header" style={headerStyle}>
+    <div className="multiplayer-container">
+      <div className="multiplayer-header">
         <p>Connect Four Online</p>
       </div>
 
-      <div style={mainStyle}>
-        {/* Render the board on whether or not matchID has been passed from onMatchJoined */}
-        {!matchID ? (
-          <ConnectFourLobby onMatchJoined={onMatchJoined} />
+      <div className="multiplayer-main">
+        {!playerID ? (
+          <LobbySetup onMatchJoined={onMatchJoined} />
         ) : (
-          <div style={boardFlexStyle}>
+          <div className="board-section">
             <ConnectFourClient
-              playerID={playerData !== undefined ? playerData.playerID : activePlayerData.playerID}
-              matchID={matchID !== undefined ? matchID : activeMatchID}
-              credentials={playerData !== undefined ? playerData.playerCredentials : activePlayerData.playerCredentials}
+              playerID={playerID}
+              matchID={matchID}
+              credentials={playerName}
             />
-            <p>Match ID: {matchID}</p>
           </div>
         )}
 
-        <div style={chatFlexStyle}>
-          {/* Chat functionality or additional components can be added here */}
+        <div className="chat-section">
+          {playerID && playerName && matchID && (
+            <Chat matchID={matchID} playerName={playerName} />
+          )}
         </div>
       </div>
     </div>
   );
 }
-
-const fullDisplay = {
-  minHeight: '100vh',
-};
-
-const boardFlexStyle = {
-  flexBasis: '75%',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  display: 'flex',
-  alignItems: 'center',
-};
-
-const chatFlexStyle = {
-  flexBasis: '25%',
-  background: 'lightgrey',
-};
 
 export default MultiplayerPage;
